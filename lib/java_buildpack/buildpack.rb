@@ -57,6 +57,10 @@ module JavaBuildpack
     #
     # @return [void]
     def compile
+      @logger.info { "info about to abort compile" }
+      @logger.debug { "debug about to abort compile" }
+      @logger.error { "error about to abort compile" }
+
       abort("Abort from JavaBuildPack::compile")
 
       diagnose_git_info true
