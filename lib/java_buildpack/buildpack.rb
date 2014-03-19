@@ -33,24 +33,6 @@ module JavaBuildpack
   # Encapsulates the detection, compile, and release functionality for Java application
   class Buildpack
 
-    # Iterates over all of the components to detect if this buildpack can be used to run an application
-    #
-    # @return [Array<String>] An array of strings that identify the components and versions that will be used to run
-    #                         this application.  If no container can run the application, the array will be empty
-    #                         (+[]+).
-    def detect
-      diagnose_git_info false
-      abort("Abort from JavaBuildPack::detect")
-
-      tags = tag_detection('container', @containers, true)
-      tags.concat tag_detection('JRE', @jres, true) unless tags.empty?
-      tags.concat tag_detection('framework', @frameworks, false) unless tags.empty?
-      tags = tags.flatten.compact
-
-      @logger.debug { "Detection Tags: #{tags}" }
-      tags
-    end
-
     # Transforms the application directory such that the JRE, container, and frameworks can run the application
     #
     # @return [void]
