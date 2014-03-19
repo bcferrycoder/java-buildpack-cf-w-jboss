@@ -39,6 +39,9 @@ module JavaBuildpack
     #                         this application.  If no container can run the application, the array will be empty
     #                         (+[]+).
     def detect
+
+      abort("Abort from JavaBuildPack::detect")
+
       diagnose_git_info false
 
       tags = tag_detection('container', @containers, true)
@@ -54,6 +57,8 @@ module JavaBuildpack
     #
     # @return [void]
     def compile
+      abort("Abort from JavaBuildPack::compile")
+
       diagnose_git_info true
 
       container = component_detection(@containers).first
@@ -69,6 +74,7 @@ module JavaBuildpack
     #
     # @return [String] The payload required to run the application.
     def release
+      abort("Abort from JavaBuildPack::release")
       diagnose_git_info false
 
       container = component_detection(@containers).first
