@@ -21,6 +21,8 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
 require 'java_buildpack/buildpack'
 
+File.open("/tmp/compile.out", 'w') {|f| f.write("COMPILE from BP2") }
+
 build_dir = ARGV[0]
 
 JavaBuildpack::Buildpack.with_buildpack(build_dir, 'Compile failed with exception %s') do |buildpack|
